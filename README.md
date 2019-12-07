@@ -5,3 +5,4 @@
 * [Day 4 solution](Day%204/4.py), task: [Secure Container](https://adventofcode.com/2019/day/4)
 * [Day 5 solution](Day%205/5.py), task: [Sunny with a Chance of Asteroids](https://adventofcode.com/2019/day/5)
 * [Day 6 solution](Day%206/6.py), task: [Universal Orbit Map](https://adventofcode.com/2019/day/6)
+* [Day 7 solution](Day%207/7.py), task: [Amplification Circuit](https://adventofcode.com/2019/day/7)
