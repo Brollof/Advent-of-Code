@@ -33,7 +33,7 @@ def calc(intcode, inp1):
             index = intcode[v2] if intcode[v1] == 0 else index + 3
         elif opcode == C_LESS:
             v1, v2, v3 = vals
-            intcode[v3] = 2 if intcode[v1] < intcode[v2] else 0
+            intcode[v3] = 1 if intcode[v1] < intcode[v2] else 0
         elif opcode == C_EQU:
             v1, v2, v3 = vals
             intcode[v3] = 1 if intcode[v1] == intcode[v2] else 0
