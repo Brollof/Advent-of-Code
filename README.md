@@ -6,3 +6,5 @@
 * [Day 5 solution](Day%205/5.py), task: [Sunny with a Chance of Asteroids](https://adventofcode.com/2019/day/5)
 * [Day 6 solution](Day%206/6.py), task: [Universal Orbit Map](https://adventofcode.com/2019/day/6)
 * [Day 7 solution](Day%207/7.py), task: [Amplification Circuit](https://adventofcode.com/2019/day/7)
+* [Day 8 solution](Day%208/8.py), task: [Space Image Format](https://adventofcode.com/2019/day/8)
+* [Day 9 solution](Day%209/9.py), task: [Sensor Boost](https://adventofcode.com/2019/day/9)
