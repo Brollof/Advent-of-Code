@@ -9,10 +9,10 @@ cmd_len = {C_ADD: 3, C_MUL: 3, C_INP: 1, C_OUT: 1, C_JMP_T: 2, C_JMP_F: 2, C_LES
 
 
 class Memory(list):
-  def __setitem__(self, index, value):
-    if index >= len(self):
-        self += [0] * (index - len(self) + 1)
-    super().__setitem__(index, value)
+    def __setitem__(self, index, value):
+        if index >= len(self):
+            self += [0] * (index - len(self) + 1)
+        super().__setitem__(index, value)
 
 
 def parse_instruction(intcode, index, rel_index):
