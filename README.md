@@ -8,3 +8,5 @@
 * [Day 7 solution](Day%207/7.py), task: [Amplification Circuit](https://adventofcode.com/2019/day/7)
 * [Day 8 solution](Day%208/8.py), task: [Space Image Format](https://adventofcode.com/2019/day/8)
 * [Day 9 solution](Day%209/9.py), task: [Sensor Boost](https://adventofcode.com/2019/day/9)
+* [Day 10 solution](Day%2010/10.py), task: [Monitoring Station](https://adventofcode.com/2019/day/10)
+* [Day 11 solution](Day%2011/11.py), task: [Space Police](https://adventofcode.com/2019/day/11)
