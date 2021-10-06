@@ -1,14 +1,1 @@
-# Advent of Code 2019
-* [Day 1 solution](Day%201/1.py), task: [The Tyranny of the Rocket Equation](https://adventofcode.com/2019/day/1)
-* [Day 2 solution](Day%202/2.py), task: [1202 Program Alarm](https://adventofcode.com/2019/day/2)
-* [Day 3 solution](Day%203/3.py), task: [Crossed Wires](https://adventofcode.com/2019/day/3)
-* [Day 4 solution](Day%204/4.py), task: [Secure Container](https://adventofcode.com/2019/day/4)
-* [Day 5 solution](Day%205/5.py), task: [Sunny with a Chance of Asteroids](https://adventofcode.com/2019/day/5)
-* [Day 6 solution](Day%206/6.py), task: [Universal Orbit Map](https://adventofcode.com/2019/day/6)
-* [Day 7 solution](Day%207/7.py), task: [Amplification Circuit](https://adventofcode.com/2019/day/7)
-* [Day 8 solution](Day%208/8.py), task: [Space Image Format](https://adventofcode.com/2019/day/8)
-* [Day 9 solution](Day%209/9.py), task: [Sensor Boost](https://adventofcode.com/2019/day/9)
-* [Day 10 solution](Day%2010/10.py), task: [Monitoring Station](https://adventofcode.com/2019/day/10)
-* [Day 11 solution](Day%2011/11.py), task: [Space Police](https://adventofcode.com/2019/day/11)
-* [Day 12 solution](Day%2012/12.py), task: [The N-Body Problem](https://adventofcode.com/2019/day/12)
-* [Day 13 solution](Day%2013/13.py), task: [Care Package](https://adventofcode.com/2019/day/13)
+# Advent of Code
