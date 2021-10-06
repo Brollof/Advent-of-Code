@@ -37,9 +37,9 @@ def traverse(start, end, cnt=0, checked=[]):
     else:
         checked.extend(to_check)
         for p in to_check:
-            val = traverse(p, end, cnt + 1, checked)
-            if val:
+            if val := traverse(p, end, cnt + 1, checked):
                 return val
+            # if val:
 
 
 with open("input.txt") as file:
@@ -53,6 +53,9 @@ for planet in planets.values():
 
 # part 1
 print(total_orbits)
+assert 194721 == total_orbits
 
 # part 2
-print(traverse(planets["YOU"], planets["SAN"]))
+p2 = traverse(planets["YOU"], planets["SAN"])
+print(p2)
+assert 316 == p2
