@@ -3,3 +3,4 @@ target/
 debug/
 Cargo.lock
 .vscode
+gen.py
