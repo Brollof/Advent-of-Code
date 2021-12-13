@@ -1,5 +1,3 @@
-import cmath
-import math
 from collections import defaultdict
 
 
@@ -7,6 +5,18 @@ CLEAN = 0
 WEAKENED = 1
 INFECTED = 2
 FLAGGED = 3
+
+
+def left(z):
+    return z * 1j
+
+
+def right(z):
+    return z * -1j
+
+
+def rev(z):
+    return z * 1j * 1j
 
 
 # doesn't work anyway...
@@ -30,7 +40,7 @@ def print_grid(grid, pos=None):
 def part1(grid):
     cx, cy = len(data[0]) // 2, len(data) // 2
     infections = 0
-    z = 0+1j # up
+    z = 0 + 1j  # up
     states = {CLEAN: INFECTED, INFECTED: CLEAN}
 
     for step in range(10000):
@@ -53,12 +63,12 @@ def part1(grid):
 def part2(grid):
     cx, cy = len(data[0]) // 2, len(data) // 2
     infections = 0
-    z = 0+1j # up
+    z = 0 + 1j  # up
     states = {
-            CLEAN: WEAKENED,
-            WEAKENED: INFECTED,
-            INFECTED: FLAGGED,
-            FLAGGED: CLEAN
+        CLEAN: WEAKENED,
+        WEAKENED: INFECTED,
+        INFECTED: FLAGGED,
+        FLAGGED: CLEAN
     }
 
     for step in range(10_000_000):
@@ -84,12 +94,10 @@ def part2(grid):
 with open("input.txt") as file:
     data = file.read()
 
+
 data = [list(line) for line in data.splitlines()]
 grid = defaultdict(int)
 
-left = lambda z: z * 1j
-right = lambda z: z * -1j
-rev = lambda z: z * 1j * 1j
 
 # convert 2D grid into map of coordinates
 for y in range(len(data)):
