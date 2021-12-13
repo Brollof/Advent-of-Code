@@ -2,12 +2,13 @@ import numpy as np
 import re
 
 
-def fold_y(arr, y):
-    return arr[:y] + arr[y + 1:][::-1]
-
-
-def fold_x(arr, x):
-    return arr[:, :x] + np.fliplr(arr[:, x + 1:])
+def fold(arr, axis, idx):
+    if axis == 'x':
+        return arr[:, :idx] + np.fliplr(arr[:, idx + 1:])
+    elif axis == 'y':
+        return arr[:idx] + np.flipud(arr[idx + 1:])
+    else:
+        assert False, f"Wrong axis! {axis}"
 
 
 with open("inp13.txt") as file:
@@ -33,19 +34,14 @@ elif ax2 == 'x':
     max_x = int(v2) * 2 + 1
     max_y = int(v1) * 2 + 1
 
-grid = np.zeros((max_y, max_x), dtype=int)
 
+grid = np.zeros((max_y, max_x), dtype=int)
 for x, y in points:
     grid[y][x] = 1
 
 
 for i, (axis, value) in enumerate(folds):
-    if axis == 'x':
-        grid = fold_x(grid, int(value))
-    elif axis == 'y':
-        grid = fold_y(grid, int(value))
-    else:
-        assert False, f"Wrong axis! {axis}"
+    grid = fold(grid, axis, int(value))
     if i == 0:
         p1 = np.count_nonzero(grid)
 
