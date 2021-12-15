@@ -1,32 +1,29 @@
 from queue import PriorityQueue
 
 
-def dijkstra(grid, start_vertex):
+def dijkstra(grid, x, y):
     max_x = len(grid[0])
     max_y = len(grid)
-    D = {(x, y): float('inf') for y in range(max_y) for x in range(max_x)}
-    D[start_vertex] = 0
-    x, y = start_vertex
+    D = [[float('inf')] * max_x for _ in range(max_y)]
+    D[y][x] = 0
 
     pq = PriorityQueue()
-    pq.put((grid[y][x], start_vertex))
-    visited = set()
+    pq.put((0, x, y))
+    # visited = set()
 
     while not pq.empty():
-        _, current_vertex = pq.get()
-        visited.add(current_vertex)
-        x, y = current_vertex
+        _, x, y = pq.get()
+        # visited.add((x, y))
 
-        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            if 0 <= x + dx < max_x and 0 <= y + dy < max_y:
-                dist = grid[y + dy][x + dx]
-                neighour = (x + dx, y + dy)
-                if neighour not in visited:
-                    old_dist = D[neighour]
-                    new_dist = D[(current_vertex)] + dist
-                    if new_dist < old_dist:
-                        pq.put((new_dist, neighour))
-                        D[neighour] = new_dist
+        for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+            if 0 <= nx < max_x and 0 <= ny < max_y:
+                dist = grid[ny][nx]
+                # if (nx, ny) not in visited:
+                old_dist = D[ny][nx]
+                new_dist = D[y][x] + dist
+                if new_dist < old_dist:
+                    pq.put((new_dist, nx, ny))
+                    D[ny][nx] = new_dist
     return D
 
 
@@ -46,13 +43,13 @@ for y in range(MAX_Y_SMALL):
                 large_grid[y + j * MAX_Y_SMALL][x + i * MAX_X_SMALL] = (grid[y][x] - 1 + i + j) % 9 + 1
 
 
-path = dijkstra(grid, (0, 0))
-p1 = path[(MAX_X_SMALL - 1, MAX_Y_SMALL - 1)]
-print(p1)
+path = dijkstra(grid, 0, 0)
+p1 = path[-1][-1]
+print(f"Part 1: {p1}")
 assert p1 == 741
 
 
-path = dijkstra(large_grid, (0, 0))
-p2 = path[(MAX_X_LARGE - 1, MAX_Y_LARGE - 1)]
-print(p2)
+path = dijkstra(large_grid, 0, 0)
+p2 = path[-1][-1]
+print(f"Part 2: {p2}")
 assert p2 == 2976
