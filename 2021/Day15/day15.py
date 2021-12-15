@@ -1,4 +1,4 @@
-from queue import PriorityQueue
+import heapq as hq
 
 
 def dijkstra(grid, x, y):
@@ -6,13 +6,11 @@ def dijkstra(grid, x, y):
     max_y = len(grid)
     D = [[float('inf')] * max_x for _ in range(max_y)]
     D[y][x] = 0
-
-    pq = PriorityQueue()
-    pq.put((0, x, y))
+    pq = [(0, x, y)]
     # visited = set()
 
-    while not pq.empty():
-        _, x, y = pq.get()
+    while len(pq):
+        _, x, y = hq.heappop(pq)
         # visited.add((x, y))
 
         for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
@@ -22,7 +20,7 @@ def dijkstra(grid, x, y):
                 old_dist = D[ny][nx]
                 new_dist = D[y][x] + dist
                 if new_dist < old_dist:
-                    pq.put((new_dist, nx, ny))
+                    hq.heappush(pq, (new_dist, nx, ny))
                     D[ny][nx] = new_dist
     return D
 
