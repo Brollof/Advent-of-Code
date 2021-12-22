@@ -1,71 +1,41 @@
-from copy import deepcopy
-
-
-def resize(image, step=0):
-    c, n = '.', 50
-    for row in image:
-        for _ in range(n):
-            row.insert(0, c)
-        row.extend([c] * n)
-
-    cols = len(image[0])
-
-    for _ in range(n):
-        image.insert(0, [c] * cols)
-        image.append([c] * cols)
-
-
-def print_grid(grid):
-    for row in grid:
-        print(''.join(row))
-
-
-def get_pixel(x, y, image, step):
-    if 0 <= x < len(image[0]) and 0 <= y < len(image):
-        return image[y][x]
-    return '.' if step % 2 == 0 else '#'
-
-
-def run(steps, image):
-    new_image = deepcopy(image)
-
+def run(steps, pixels):
     for step in range(steps):
-        old_image = deepcopy(new_image)
-        for y in range(len(old_image)):
-            for x in range(len(old_image[0])):
-                line = ''
-                line += get_pixel(x - 1, y - 1, old_image, step)
-                line += get_pixel(x + 0, y - 1, old_image, step)
-                line += get_pixel(x + 1, y - 1, old_image, step)
+        min_x, max_x = min(p[0] for p in pixels), max(p[0] for p in pixels)
+        min_y, max_y = min(p[1] for p in pixels), max(p[1] for p in pixels)
+        inf_pixel = step & enhancement[0]
+        new_pixels = set()
 
-                line += get_pixel(x - 1, y + 0, old_image, step)
-                line += get_pixel(x + 0, y + 0, old_image, step)
-                line += get_pixel(x + 1, y + 0, old_image, step)
+        for y in range(min_y - 1, max_y + 2):
+            for x in range(min_x - 1, max_x + 2):
+                idx = 0
+                for dy in (-1, 0, 1):
+                    for dx in (-1, 0, 1):
+                        idx <<= 1
+                        if min_x <= x + dx <= max_x and min_y <= y + dy <= max_y:
+                            idx |= int((x + dx, y + dy) in pixels)
+                        else:
+                            idx |= inf_pixel
 
-                line += get_pixel(x - 1, y + 1, old_image, step)
-                line += get_pixel(x + 0, y + 1, old_image, step)
-                line += get_pixel(x + 1, y + 1, old_image, step)
+                if enhancement[idx]:
+                    new_pixels.add((x, y))
+        pixels = new_pixels
 
-                binary = line.replace('#', '1').replace('.', '0')
-                new_image[y][x] = enhancement[int(binary, base=2)]
-
-    return sum(1 for y in range(len(new_image)) for x in range(len(new_image[0])) if new_image[y][x] == '#')
+    return len(pixels)
 
 
-with open("inp20.txt") as file:
+with open('inp20.txt') as file:
     data = file.read()
 
 
 enhancement, image = data.split("\n\n")
-image = [list(line) for line in image.splitlines()]
-resize(image)
+enhancement = [int(ch == '#') for ch in enhancement]
+pixels = set((x, y) for y, row in enumerate(image.splitlines()) for x, c in enumerate(row) if c == '#')
 
 
-p1 = run(2, image)
+p1 = run(2, pixels)
 print(f"Part 1: {p1}")
 assert p1 == 5884
 
-
-p2 = run(50, image)
+p2 = run(50, pixels)
 print(f"Part 2: {p2}")
 assert p2 == 19043
